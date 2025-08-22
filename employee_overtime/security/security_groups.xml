@@ -1,0 +1,15 @@
+<odoo>
+    <record id="module_category_mycompany_human_resources_department" model="ir.module.category">
+    <field name="name">MyCompany Role</field>
+    </record>
+
+    <record id="group_overtime_manager" model="res.groups">
+        <field name="name">Overtime Manager</field>
+        <field name="category_id" ref="employee_overtime.module_category_mycompany_human_resources_department"/>
+    </record>
+
+    <record id="group_overtime_employee" model="res.groups">
+        <field name="name">Overtime Employee</field>
+        <field name="category_id" ref="employee_overtime.module_category_mycompany_human_resources_department"/>
+    </record>
+</odoo>

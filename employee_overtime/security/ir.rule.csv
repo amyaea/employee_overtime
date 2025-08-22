@@ -1,0 +1,3 @@
+id,name,model_id:id,domain_force,groups:id
+employee_overtime_rule_user_own,Users see only their own overtime,employee_overtime.model_hr_overtime,"[('create_uid','=',user.id)]",employee_overtime.group_overtime_employee
+employee_overtime_rule_manager_all,Managers see all overtime (except drafts),employee_overtime.model_hr_overtime,"[('state','!=','draft')]",employee_overtime.group_overtime_manager
