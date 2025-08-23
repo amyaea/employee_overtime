@@ -32,4 +32,3 @@ A custom Odoo module for managing employee overtime requests with role-based acc
 
 ---
 
-## 📂 Module Structure
