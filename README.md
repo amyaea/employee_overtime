@@ -1,5 +1,3 @@
-# employee_overtime
-This Odoo module is used to manage employees requests for overtime
 # Employee Overtime Management (Odoo 17)
 
 A custom Odoo module for managing employee overtime requests with role-based access and approval workflows.
