@@ -1,0 +1,3 @@
+id,name,model_id:id,domain_force,groups:id
+employee_overtime_rule_user_own,Users see only their own overtime,employee_overtime.model_employee_overtime,"[('create_uid','=',user.id)]",employee_overtime.group_overtime_employee
+employee_profile_rule_user_own,Users see only their own profile,employee_overtime.model_employee_profile,"[('user_id','=',user.id)]",employee_overtime.group_overtime_employee

@@ -1,0 +1,13 @@
+<odoo>
+
+    <menuitem id="employee_overtime_menu_root"
+              name="Overtime Requests"
+              action="action_requests"/>
+
+    <menuitem id="employee_overtime_employees"
+              name="Employees"
+              parent="employee_overtime_menu_root"
+              action="action_employees"
+              groups="employee_overtime.group_overtime_manager"/>
+
+</odoo>

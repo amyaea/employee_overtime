@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="employee_overtime_tree_view" model="ir.ui.view">
+        <field name="name">employee.overtime.tree.view</field>
+        <field name="model">employee.overtime</field>
+        <field name="arch" type="xml">
+            <tree sample="1">
+                <field name="employee_id"/>
+                <field name="date"/>
+                <field name="hours"/>
+                <field name="reason"/>
+                <field name="state"
+                widget="badge"
+                decoration-success="state == 'approved'"
+                decoration-danger="state == 'rejected'"
+                decoration-info="state == 'submitted'"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="employee_overtime_form_view" model="ir.ui.view">
+        <field name="name">employee.overtime.form.view</field>
+        <field name="model">employee.overtime</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="state"
+                           widget="statusbar"
+                           statusbar_visible="rejected,draft,submitted,approved"/>
+                    <button name="action_submit"
+                            type="object"
+                            string="Submit"
+                            groups="employee_overtime.group_overtime_employee"/>
+                    <button name="action_approve"
+                            type="object"
+                            string="Approve"
+                            class="oe_highlight"
+                            groups="employee_overtime.group_overtime_manager"/>
+                    <button name="action_reject"
+                            type="object"
+                            string="Reject"
+                            groups="employee_overtime.group_overtime_manager"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="employee_id"
+                               groups="employee_overtime.group_overtime_employee"
+                               readonly="1"/>
+                        <field name="employee_id"
+                               groups="employee_overtime.group_overtime_manager"/>
+                        <field name="date"/>
+                        <field name="hours"/>
+                        <field name="reason"/>
+                    </group>
+                </sheet>
+                <sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" groups="base.group_user"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="employee_overtime_search" model="ir.ui.view">
+        <field name="name">employee.overtime.search</field>
+        <field name="model">employee.overtime</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="employee_id" groups="employee_overtime.group_overtime_manager"/>
+                <field name="date"/>
+                <field name="hours"/>
+                <field name="reason"/>
+                <field name="state"/>
+                <filter name="filter_state_draft" string="Draft" domain="[('state','=','draft')]" groups="employee_overtime.group_overtime_employee"/>
+                <separator/>
+                <filter name="filter_state_submitted" string="Submitted" domain="[('state','=','submitted')]"/>
+                <separator/>
+                <filter name="filter_state_approved" string="Approved" domain="[('state','=','approved')]"/>
+                <separator/>
+                <filter name="filter_state_rejected" string="Rejected" domain="[('state','=','rejected')]"/>
+                <separator/>
+                <filter name="filter_hours_1_or_2" string="1-2 hours" domain="[('hours','&lt;=','2')]"/>
+                <separator/>
+                <filter name="filter_hours_3_or_4" string="3-4 hours" domain="[('hours','&gt;=','3'), ('hours','&lt;=','4')]"/>
+                <separator/>
+                <filter name="filter_hours_5_or_more" string="5+ hours" domain="[('hours','&gt;=','5')]"/>
+                <group>
+                    <filter name="groupby_employee_id" string="Employee" context="{'group_by':'employee_id'}" groups="employee_overtime.group_overtime_manager"/>
+                </group>
+                <group>
+                    <filter name="groupby_date" string="Date" context="{'group_by':'date'}"/>
+                </group>
+                <group>
+                    <filter name="groupby_hours" string="Hours" context="{'group_by':'hours'}"/>
+                </group>
+                <group>
+                    <filter name="groupby_state" string="Status" context="{'group_by':'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+
+    <record id="action_requests" model="ir.actions.act_window">
+        <field name="name">Overtime Requests</field>
+        <field name="res_model">employee.overtime</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No Overtime Requests Made Yet
+            </p>
+        </field>
+    </record>
+
+</odoo>

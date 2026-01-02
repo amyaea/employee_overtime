@@ -1,0 +1,57 @@
+<odoo>
+
+    <record id="employee_profile_tree_view" model="ir.ui.view">
+        <field name="name">employee.profile.tree.view</field>
+        <field name="model">employee.profile</field>
+        <field name="arch" type="xml">
+            <tree sample="1">
+                <field name="name"/>
+                <field name="job_title"/>
+                <field name="work_email"/>
+                <field name="work_phone"/>
+                <field name="user_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="employee_profile_form_view" model="ir.ui.view">
+        <field name="name">employee.profile.form.view</field>
+        <field name="model">employee.profile</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="name"/>
+                    <field name="job_title"/>
+                    <field name="work_email"/>
+                    <field name="work_phone"/>
+                    <field name="user_id"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="employee_profile_search" model="ir.ui.view">
+        <field name="name">employee.profile.search</field>
+        <field name="model">employee.profile</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="job_title"/>
+                <field name="work_email"/>
+                <field name="work_phone"/>
+                <field name="user_id"/>
+                <group>
+                    <filter name="groupby_job_title" string="Job Title" context="{'group_by':'job_title'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_employees" model="ir.actions.act_window">
+        <field name="name">Employees</field>
+        <field name="res_model">employee.profile</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+</odoo>
